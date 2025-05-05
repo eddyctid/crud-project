@@ -1,0 +1,16 @@
+<!-- templates/base.html -->
+<html>
+    <head>
+        <title>Django Blog</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="{% url 'BlogListView' %}">Blog Posts</a></h1>
+            <a href="http://127.0.0.1:8000/admin/">Log In</a>
+        </header>
+        <div>
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </body>
+</html>
