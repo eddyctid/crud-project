@@ -1,16 +1,20 @@
-<!-- templates/base.html -->
+{%load static%}
 <html>
     <head>
         <title>Django Blog</title>
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
     </head>
     <body>
         <header>
-            <h1><a href="{% url 'BlogListView' %}">Blog Posts</a></h1>
-            <a href="http://127.0.0.1:8000/admin/">Log In</a>
+            <div><h1><a href="{% url 'blog_list_view' %}">Blog Posts</a></h1></div>
         </header>
         <div>
             {% block content %}
             {% endblock content %}
         </div>
+        <footer>
+            <div><h4><a href="http://127.0.0.1:8000/admin/">Admin Page</a></h4></div>
+        </footer>
     </body>
 </html>
