@@ -17,7 +17,18 @@
             {% endblock content %}
         </div>
         <footer>
-            <div><h4><a href="http://127.0.0.1:8000/admin/">Admin Page</a></h4></div>
+            {% if user.is_authenticated %}
+                <div><h4><p>Hi {{ user.username }}!</p></h4></div>
+                <div>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                </div>
+            {% else %}
+                <p>You are not logged in.</p>
+                <div><h4><a href="{% url 'login' %}">Log In</a></h4></div>
+            {% endif %}
         </footer>
     </body>
 </html>

@@ -14,10 +14,11 @@ header h1 a {
     text-decoration: none;
 }
 
-footer h4 a {
+footer h4{
     color: green;
     text-decoration: none;
 }
+
 
 .nav-left {
     margin-right: auto;
