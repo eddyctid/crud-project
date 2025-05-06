@@ -7,7 +7,10 @@
     </head>
     <body>
         <header>
-            <div><h1><a href="{% url 'blog_list_view' %}">Blog Posts</a></h1></div>
+            <div class="nav-left"><h1><a href="{% url 'blog_list_view' %}">Blog Posts</a></h1></div>
+            <div class="nav-right">
+                <a href="{% url 'blog_create_view' %}">+ New Blog Post</a>
+            </div>
         </header>
         <div>
             {% block content %}
