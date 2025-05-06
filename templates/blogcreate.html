@@ -1,15 +1,16 @@
 <!-- templates/post_new.html -->
 {% extends "base.html" %}
 {% block content %}
-
-{% if user.is_authenticated %}
-    <h1>New post</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Save">
-    </form>
-{% else %}
-    <p>Only logged in users are allowed to Post!</p>
-{% endif %}
+<section class="form-section">
+    {% if user.is_authenticated %}
+        <h1>Create a New Post</h1>
+        <form action="" method="post" class="styled-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Publish" class="submit-button">
+        </form>
+    {% else %}
+        <p class="warning-message">Only logged in users are allowed to post!</p>
+    {% endif %}
+</section>
 {% endblock content %}

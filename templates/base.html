@@ -1,34 +1,43 @@
-{%load static%}
-<html>
-    <head>
-        <title>Django Blog</title>
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    </head>
-    <body>
-        <header>
-            <div class="nav-left"><h1><a href="{% url 'blog_list_view' %}">Blog Posts</a></h1></div>
-            <div class="nav-right">
-                <a href="{% url 'blog_create_view' %}">+ New Blog Post</a>
-            </div>
-        </header>
-        <div>
-            {% block content %}
-            {% endblock content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+        <div class="nav-left">
+            <h1><a href="{% url 'blog_list_view' %}">Yet Another Blog Page</a></h1>
         </div>
-        <footer>
+        <nav class="nav-right">
             {% if user.is_authenticated %}
-                <div><h4><p>Hi {{ user.username }}!</p></h4></div>
-                <div>
-                    <form method="post" action="{% url 'logout' %}">
-                        {% csrf_token %}
-                        <button type="submit">Logout</button>
-                    </form>
-                </div>
+                <p class="user-info">
+                    Hi <strong>{{ user.username }}</strong> |
+                    <a href="#" onclick="document.getElementById('logout-form').submit(); return false;" class="logout-link">Logout</a>
+                </p>
+                <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: none;">
+                    {% csrf_token %}
+                </form>
             {% else %}
-                <p>You are not logged in.</p>
-                <div><h4><a href="{% url 'login' %}">Log In</a></h4></div>
+                <p class="user-info">
+                    You are not logged in <a href="{% url 'login' %}">Log In</a>
+                </p>
             {% endif %}
-        </footer>
-    </body>
+            <a href="{% url 'blog_create_view' %}" class="button-link">+ New Post</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <footer>
+        <h4>Built with ❤️ using Django!</h4>
+    </footer>
+</body>
 </html>
