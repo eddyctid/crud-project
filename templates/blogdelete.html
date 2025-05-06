@@ -1,13 +1,19 @@
 <!-- templates/post_delete.html -->
 {% extends "base.html" %}
 {% block content %}
-{% if user.is_authenticated %}
-    <h1>Delete post</h1>
-    <form action="" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ post.title }}"?</p>
-    <input type="submit" value="Confirm">
-    </form>
-{% else %}
-    <p>Only logged in users are allowed to Delete!</p>
-{% endif %}
+<section class="form-section">
+    {% if user.is_authenticated %}
+        <h1>Delete Post</h1>
+        <form action="" method="post" class="styled-form">
+            {% csrf_token %}
+            <p class="confirmation-message">Are you sure you want to delete the post titled "<strong>{{ post.title }}</strong>"?</p>
+            <div class="form-buttons">
+                <input type="submit" value="Confirm" class="submit-button confirm-button">
+                <a href="{% url 'blog_list_view' %}" class="cancel-button">Cancel</a>
+            </div>
+        </form>
+    {% else %}
+        <p class="warning-message">Only logged in users are allowed to delete posts!</p>
+    {% endif %}
+</section>
 {% endblock content %}
